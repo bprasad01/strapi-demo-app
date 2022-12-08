@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "restaurents",
+  "info": {
+    "singularName": "restaurent",
+    "pluralName": "restaurents",
+    "displayName": "Restaurent",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "openingHours": {
+      "type": "component",
+      "repeatable": false,
+      "component": "restaurent-info.opening-hours"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "restaurents"
+    },
+    "avgPrice": {
+      "type": "decimal"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "restaurent"
+    }
+  }
+}
